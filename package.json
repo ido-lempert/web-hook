@@ -1,0 +1,17 @@
+{
+  "name": "web-hook",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --env-file=.env index.js",
+    "serve": "node --inspect --env-file=.env index.js --watch"
+  },
+  "private": true,
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^4.21.2",
+    "express-x-hub": "^1.0.4"
+  }
+}
