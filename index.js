@@ -30,10 +30,13 @@ app.get(['/facebook', '/instagram', '/threads'], function(req, res) {
 });
 
 function getLead(data){
-    const accessToken = process.env.ACCESS_TOKEN;
-    fetch(`https://graph.facebook.com/v22.0/${data.entry[0].changes[0].value.leadgen_id}?fields=id,ad_id,form_id,created_time,field_data&access_token=${accessToken}`).then(async res => {
-        leads.unshift(await res.json());
-    }, err => console.error(err));
+    if (data.length && data[0].entry && data[0].entry.length) {
+        const accessToken = process.env.ACCESS_TOKEN;
+        fetch(`https://graph.facebook.com/v22.0/${data[0].entry[0].changes[0].value.leadgen_id}?fields=id,ad_id,form_id,created_time,field_data&access_token=${accessToken}`).then(async res => {
+            leads.unshift(await res.json());
+        }, err => console.error(err));
+    }
+
 }
 
 app.post('/facebook', function(req, res) {
